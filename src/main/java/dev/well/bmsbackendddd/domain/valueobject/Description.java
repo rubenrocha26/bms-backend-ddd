@@ -1,6 +1,8 @@
 package dev.well.bmsbackendddd.domain.valueobject;
 
-public class Description {
+import dev.well.bmsbackendddd.ddd.ValueObject;
+
+public class Description implements ValueObject {
     private String _description;
 
     public Description (String description) {

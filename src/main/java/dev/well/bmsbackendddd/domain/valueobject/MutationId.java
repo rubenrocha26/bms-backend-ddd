@@ -1,6 +1,8 @@
 package dev.well.bmsbackendddd.domain.valueobject;
 
-public class MutationId {
+import dev.well.bmsbackendddd.ddd.DomainId;
+
+public class MutationId implements DomainId {
     private String _mutationId;
 
     public MutationId (String mutationId) {
