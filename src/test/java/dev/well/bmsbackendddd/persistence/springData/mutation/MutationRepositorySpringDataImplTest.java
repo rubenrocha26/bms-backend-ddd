@@ -2,8 +2,8 @@ package dev.well.bmsbackendddd.persistence.springData.mutation;
 
 import dev.well.bmsbackendddd.domain.mutation.Mutation;
 import dev.well.bmsbackendddd.domain.valueobject.MutationId;
-import dev.well.bmsbackendddd.mapper.dataModelMapper.mutation.IMutationDataModelMapper;
-import dev.well.bmsbackendddd.mapper.dataModelMapper.mutation.MutationDataModelMapperImpl;
+import dev.well.bmsbackendddd.persistence.dataModelMapper.IMutationDataModelMapper;
+import dev.well.bmsbackendddd.persistence.dataModelMapper.MutationDataModelMapperImpl;
 import dev.well.bmsbackendddd.persistence.dataModel.MutationDataModel;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package dev.well.bmsbackendddd.mapper.dataModelMapper.mutation;
+package dev.well.bmsbackendddd.persistence.dataModelMapper;
 
 import dev.well.bmsbackendddd.domain.mutation.Mutation;
 import dev.well.bmsbackendddd.persistence.dataModel.MutationDataModel;

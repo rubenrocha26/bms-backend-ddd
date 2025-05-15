@@ -1,15 +1,17 @@
-package dev.well.bmsbackendddd.mapper.dataModelMapper.mutation;
+package dev.well.bmsbackendddd.persistence.dataModelMapper;
 
 import dev.well.bmsbackendddd.domain.mutation.IMutationFactory;
 import dev.well.bmsbackendddd.domain.mutation.Mutation;
 import dev.well.bmsbackendddd.domain.valueobject.Description;
 import dev.well.bmsbackendddd.domain.valueobject.MutationId;
 import dev.well.bmsbackendddd.persistence.dataModel.MutationDataModel;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MutationDataModelMapperImpl implements  IMutationDataModelMapper {
+@Component
+public class MutationDataModelMapperImpl implements IMutationDataModelMapper {
 
     private final IMutationFactory _mutationFactory;
 

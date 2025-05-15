@@ -2,9 +2,11 @@ package dev.well.bmsbackendddd.domain.mutation;
 
 import dev.well.bmsbackendddd.domain.valueobject.Description;
 import dev.well.bmsbackendddd.domain.valueobject.MutationId;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
+@Component
 public class MutationFactoryImpl implements IMutationFactory{
 
     @Override

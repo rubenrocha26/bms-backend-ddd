@@ -2,13 +2,15 @@ package dev.well.bmsbackendddd.persistence.springData.mutation;
 
 import dev.well.bmsbackendddd.domain.mutation.Mutation;
 import dev.well.bmsbackendddd.domain.valueobject.MutationId;
-import dev.well.bmsbackendddd.mapper.dataModelMapper.mutation.IMutationDataModelMapper;
+import dev.well.bmsbackendddd.persistence.dataModelMapper.IMutationDataModelMapper;
 import dev.well.bmsbackendddd.persistence.dataModel.MutationDataModel;
 import dev.well.bmsbackendddd.repository.IMutationRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class MutationRepositorySpringDataImpl implements IMutationRepository {
     private final IMutationRepositorySpringData _mutationRepositorySpringData;
     private final IMutationDataModelMapper _mutationDataModelMapper;
