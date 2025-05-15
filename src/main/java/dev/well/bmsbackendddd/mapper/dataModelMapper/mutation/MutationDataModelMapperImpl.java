@@ -20,6 +20,7 @@ public class MutationDataModelMapperImpl implements  IMutationDataModelMapper {
         this._mutationFactory = mutationFactory;
     }
 
+    @Override
     public Mutation toDomain (MutationDataModel mutationDataModel){
         MutationId mutationId = new MutationId(mutationDataModel.getMutationId());
         Description description = new Description(mutationDataModel.getDescription());
@@ -27,6 +28,7 @@ public class MutationDataModelMapperImpl implements  IMutationDataModelMapper {
         return _mutationFactory.createMutation(mutationId, description);
     }
 
+    @Override
     public Iterable<Mutation> toDomain (Iterable<MutationDataModel> listMutationDataModel){
         List<Mutation> listMutationDomain = new ArrayList<>();
 
@@ -40,5 +42,13 @@ public class MutationDataModelMapperImpl implements  IMutationDataModelMapper {
         });
 
         return listMutationDomain;
+    }
+
+    @Override
+    public MutationDataModel toDataModel (Mutation mutation){
+        String mutationId = mutation.identity().toString();
+        String description = mutation.getDescription().toString();
+
+        return new  MutationDataModel(mutationId,description);
     }
 }

@@ -6,4 +6,5 @@ import dev.well.bmsbackendddd.persistence.dataModel.MutationDataModel;
 public interface IMutationDataModelMapper {
     Mutation toDomain(MutationDataModel mutationDataModel);
     Iterable<Mutation> toDomain (Iterable<MutationDataModel> mutationDataModels);
+    MutationDataModel toDataModel (Mutation mutation);
 }

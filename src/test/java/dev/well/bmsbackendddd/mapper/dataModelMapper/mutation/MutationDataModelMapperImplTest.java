@@ -133,4 +133,18 @@ class MutationDataModelMapperImplTest {
         assertThrows(NullPointerException.class,() -> mapperDataModelMutation.toDomain(mutationDataModel));
     }
 
+    @Test
+    void shouldReturnMutationToDataModel() {
+        //arrange
+        IMutationFactory mutationFactory = mock(IMutationFactory.class);
+        IMutationDataModelMapper mapperDataModelMutation = new MutationDataModelMapperImpl(mutationFactory);
+        Mutation mutation = mock(Mutation.class);
+        when(mutation.identity()).thenReturn(new MutationId("mutationId"));
+        when(mutation.getDescription()).thenReturn(new Description("description"));
+        //act
+        MutationDataModel result = mapperDataModelMutation.toDataModel(mutation);
+        //assert
+        assertNotNull(result);
+    }
+
 }
