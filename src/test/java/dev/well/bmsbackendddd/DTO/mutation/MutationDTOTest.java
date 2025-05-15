@@ -11,7 +11,7 @@ class MutationDTOTest {
     void shouldCreateMutationDTOWithValidArguments() {
         MutationDTO dto = new MutationDTO("id123", "description");
         assertEquals("id123", dto.getMutationId());
-        assertEquals("description", dto.getMutationDescription());
+        assertEquals("description", dto.getDescription());
     }
 
     @Test

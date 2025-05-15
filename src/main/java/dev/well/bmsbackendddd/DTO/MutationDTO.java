@@ -19,7 +19,7 @@ public class MutationDTO {
     public String getMutationId() {
         return _mutationId;
     }
-    public String getMutationDescription() {
+    public String getDescription() {
         return _mutationDescription;
     }
 }
