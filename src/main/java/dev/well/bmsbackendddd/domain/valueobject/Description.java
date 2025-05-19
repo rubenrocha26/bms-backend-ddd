@@ -3,7 +3,7 @@ package dev.well.bmsbackendddd.domain.valueobject;
 import dev.well.bmsbackendddd.ddd.ValueObject;
 
 public class Description implements ValueObject {
-    private String _description;
+    private final String _description;
 
     public Description (String description) {
         if(description == null || description.isBlank()) throw new IllegalArgumentException("Description cannot be null or empty");

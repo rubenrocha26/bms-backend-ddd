@@ -3,7 +3,7 @@ package dev.well.bmsbackendddd.domain.valueobject;
 import dev.well.bmsbackendddd.ddd.DomainId;
 
 public class MutationId implements DomainId {
-    private String _mutationId;
+    private final String _mutationId;
 
     public MutationId (String mutationId) {
         if (mutationId == null || mutationId.isBlank()) throw new IllegalArgumentException("Id cannot be null or empty");

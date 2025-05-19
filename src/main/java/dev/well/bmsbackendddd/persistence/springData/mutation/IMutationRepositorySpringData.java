@@ -4,4 +4,5 @@ import dev.well.bmsbackendddd.persistence.dataModel.MutationDataModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IMutationRepositorySpringData extends JpaRepository<MutationDataModel, String> {
+    boolean existsByDescription(String description);
 }

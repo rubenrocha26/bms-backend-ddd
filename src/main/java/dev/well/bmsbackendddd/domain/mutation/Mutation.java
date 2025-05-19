@@ -5,8 +5,8 @@ import dev.well.bmsbackendddd.domain.valueobject.Description;
 import dev.well.bmsbackendddd.domain.valueobject.MutationId;
 
 public class Mutation implements AggregateRoot<MutationId> {
-    private MutationId _mutationId;
-    private Description _mutationDescription;
+    private final MutationId _mutationId;
+    private final Description _mutationDescription;
 
     protected Mutation (MutationId mutationId, Description description) {
         if (mutationId == null) {

@@ -1,6 +1,7 @@
 package dev.well.bmsbackendddd.persistence.springData.mutation;
 
 import dev.well.bmsbackendddd.domain.mutation.Mutation;
+import dev.well.bmsbackendddd.domain.valueobject.Description;
 import dev.well.bmsbackendddd.domain.valueobject.MutationId;
 import dev.well.bmsbackendddd.persistence.dataModelMapper.IMutationDataModelMapper;
 import dev.well.bmsbackendddd.persistence.dataModel.MutationDataModel;
@@ -61,5 +62,13 @@ public class MutationRepositorySpringDataImpl implements IMutationRepository {
             throw new IllegalArgumentException("MutationId cannot be null");
         }
         return _mutationRepositorySpringData.existsById(mutationId.toString());
+    }
+
+    @Override
+    public boolean containsOfDescription (Description description) {
+        if (description == null) {
+            throw new IllegalArgumentException("Description cannot be null");
+        }
+        return _mutationRepositorySpringData.existsByDescription(description.toString());
     }
 }

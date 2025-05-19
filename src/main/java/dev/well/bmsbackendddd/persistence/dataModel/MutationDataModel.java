@@ -1,5 +1,6 @@
 package dev.well.bmsbackendddd.persistence.dataModel;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -7,8 +8,10 @@ import jakarta.persistence.Table;
 @Table(name="mutation")
 public class MutationDataModel {
     @Id
+    @Column(name="mutationid")
     private String mutationId;
-    private String mutationDescription;
+    @Column(name="description")
+    private String description;
 
     public MutationDataModel() {}
 
@@ -17,7 +20,7 @@ public class MutationDataModel {
             throw new IllegalArgumentException("Parameters for DataModel cannot be null");
         }
         this.mutationId = mutationId;
-        this.mutationDescription = mutationDescription;
+        this.description = mutationDescription;
     }
 
     public String getMutationId() {
@@ -25,6 +28,6 @@ public class MutationDataModel {
     }
 
     public String getDescription() {
-        return this.mutationDescription;
+        return this.description;
     }
 }

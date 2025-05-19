@@ -1,15 +1,15 @@
-package dev.well.bmsbackendddd.DTO.mutation;
+package dev.well.bmsbackendddd.dto.mutation;
 
-import dev.well.bmsbackendddd.DTO.MutationDTO;
+import dev.well.bmsbackendddd.dto.MutationDto;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MutationDTOTest {
+class MutationDtoTest {
 
     @Test
     void shouldCreateMutationDTOWithValidArguments() {
-        MutationDTO dto = new MutationDTO("id123", "description");
+        MutationDto dto = new MutationDto("id123", "description");
         assertEquals("id123", dto.getMutationId());
         assertEquals("description", dto.getDescription());
     }
@@ -17,7 +17,7 @@ class MutationDTOTest {
     @Test
     void shouldThrowExceptionWhenMutationIdIsNull() {
         Exception ex = assertThrows(IllegalArgumentException.class, () ->
-                new MutationDTO(null, "description")
+                new MutationDto(null, "description")
         );
         assertEquals("MutationId cannot be null or blank", ex.getMessage());
     }
@@ -25,7 +25,7 @@ class MutationDTOTest {
     @Test
     void shouldThrowExceptionWhenMutationIdIsBlank() {
         Exception ex = assertThrows(IllegalArgumentException.class, () ->
-                new MutationDTO("   ", "description")
+                new MutationDto("   ", "description")
         );
         assertEquals("MutationId cannot be null or blank", ex.getMessage());
     }
@@ -33,7 +33,7 @@ class MutationDTOTest {
     @Test
     void shouldThrowExceptionWhenMutationDescriptionIsNull() {
         Exception ex = assertThrows(IllegalArgumentException.class, () ->
-                new MutationDTO("id123", null)
+                new MutationDto("id123", null)
         );
         assertEquals("MutationDescription cannot be null or blank", ex.getMessage());
     }
@@ -41,7 +41,7 @@ class MutationDTOTest {
     @Test
     void shouldThrowExceptionWhenMutationDescriptionIsBlank() {
         Exception ex = assertThrows(IllegalArgumentException.class, () ->
-                new MutationDTO("id123", "   ")
+                new MutationDto("id123", "   ")
         );
         assertEquals("MutationDescription cannot be null or blank", ex.getMessage());
     }
