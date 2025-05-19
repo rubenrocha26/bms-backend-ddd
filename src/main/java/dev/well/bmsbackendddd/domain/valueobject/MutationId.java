@@ -20,6 +20,10 @@ public class MutationId implements DomainId {
         return false;
     }
 
+    public String getMutationId() {
+        return _mutationId;
+    }
+
     @Override
     public String toString () {
         return _mutationId;

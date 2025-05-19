@@ -1,25 +1,21 @@
 package dev.well.bmsbackendddd.dto;
 
 public class MutationDto {
-
     private final String mutationId;
-    private final String mutationDescription;
+    private final String description;
 
-    public MutationDto(String mutationId, String mutationDescription) {
-        if (mutationId == null || mutationId.isBlank()) {
-            throw new IllegalArgumentException("MutationId cannot be null or blank");
-        }
-        if (mutationDescription == null || mutationDescription.isBlank()) {
+    public MutationDto(String mutationId, String description) {
+        if (description == null) {
             throw new IllegalArgumentException("MutationDescription cannot be null or blank");
         }
         this.mutationId = mutationId;
-        this.mutationDescription = mutationDescription;
+        this.description = description;
     }
 
     public String getMutationId() {
         return mutationId;
     }
     public String getDescription() {
-        return mutationDescription;
+        return description;
     }
 }

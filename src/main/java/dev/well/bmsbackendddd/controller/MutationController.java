@@ -29,13 +29,14 @@ public class MutationController {
 
     //Add Bird REST API
     @PostMapping
-    public ResponseEntity<?> createMutation (@RequestBody String description){
+    public ResponseEntity<?> createMutation (@RequestBody MutationDto mutationDto){
         try {
-            Description descriptionForMutation = new Description(description);
+            Description descriptionForMutation = new Description(mutationDto.getDescription());
             Optional<Mutation> savedMutation = _mutationService.createAndSaveMutation(descriptionForMutation);
 
             if (savedMutation.isPresent()) {
                 MutationDto mutationDtoSaved = _mutationDTOMapper.toDTO(savedMutation.get());
+
                 return new ResponseEntity<>(mutationDtoSaved, HttpStatus.CREATED);
 
             }else {

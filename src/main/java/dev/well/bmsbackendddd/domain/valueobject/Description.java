@@ -21,6 +21,10 @@ public class Description implements ValueObject {
         return false;
     }
 
+    public String getDescription() {
+        return _description;
+    }
+
     @Override
     public String toString() {
         return this._description;

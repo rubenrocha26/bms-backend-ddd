@@ -31,6 +31,6 @@ public class MutationDtoMapperImpl implements IMutationDtoMapper {
         if(mutation == null) {
             throw new IllegalArgumentException("Mutation cannot be null");
         }
-        return new MutationDto(mutation.identity().toString(), mutation.getDescription().toString());
+        return new MutationDto(mutation.identity().toString(), mutation.getDescription().getDescription());
     }
 }
