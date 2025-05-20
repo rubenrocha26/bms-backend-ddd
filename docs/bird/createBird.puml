@@ -1,0 +1,35 @@
+@startuml
+actor user
+autonumber
+
+title: CreateBird_SequenceDiagram
+
+user -> UI ++ #application : I want to create a bird
+UI --> user -- : bird scientificName, mutation, birdRing, dateOfBirth?
+
+user -> UI ++ #application : birdDto(scientificName, Optional.of(mutation), birdRing, dateOfBirth)
+UI -> ":BirdController" as BC ++ #application : createBird(birdDto)
+ref over BC
+    Convert DTO to Domain
+end ref
+BC -> ":BirdServiceImpl" as BS ++ #application : createBird(scientificName, Optional.of(mutation), birdRing, dateOfBirth)
+BS -> ":BirdFactoryImpl" as BF ++ #application : createBird(scientificName, Optional.of(mutation), birdRing, dateOfBirth)
+
+create "bird1:Bird" as BD
+BF -> BD : <create>  (scientificName, Optional.of(mutation), birdRing, dateOfBirth)
+BF --> BS  -- : bird1
+
+BS -> ":BirdRepository" as BR ++ #application : saveBird(bird1)
+ref over BR
+    Convert domain to dataModel
+end ref
+BR -> BR : save(bird1)
+BR --> BS  -- : savedBird
+
+BS --> BC -- : savedBird
+ref over BC
+    Convert domain to DTO
+end ref
+BC --> UI -- : savedBird
+UI --> user -- : savedBird
+@enduml
