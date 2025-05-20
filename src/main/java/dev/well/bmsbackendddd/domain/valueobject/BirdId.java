@@ -6,6 +6,7 @@ public class BirdId implements DomainId {
     private final String _birdId;
 
     public BirdId (String birdId) {
+        if (birdId==null || birdId.isBlank()) throw new NullPointerException("BirdId can't be null or blank");
         this._birdId = birdId;
     }
 

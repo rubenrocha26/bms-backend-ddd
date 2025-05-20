@@ -16,11 +16,13 @@ package "Bird Aggregate" {
     class "BirdScientificName"
     class "BirdRing"
     class "DateOfBirth"
+    class "DateOfDeath"
     enum "BirdStatus"
     Bird "1" --> "1" BirdId
     Bird "1" --> "1" BirdScientificName
     Bird "1" --> "1" BirdRing
-    Bird "1" --> "1" Date
+    Bird "1" --> "1" "DateOfBirth"
+    Bird "1" --> "0..1" "DateOfDeath"
     Bird "1" --> "1" BirdStatus
     Bird "0..1" --> "0..1" MutationId : mutationId
 }
