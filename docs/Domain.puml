@@ -8,16 +8,15 @@ class "<<Value Object>>\n BirdScientificName" as BSN
 
 class "<<Value Object>>\n BirdRing" as BR
 
-class "<<Value Object>>\n DateOfBirth" as DB
+class "<<Value Object>>\n Date" as DB
 
-class "<<Value Object>>\n State" as ST
+enum "<<Value Object>>\n State" as ST
 
 package "Mutation Aggregate"{
-    entity "<<Entity>>\n Mutation" as MUT
+    entity "<<Root>>\n <<Entity>>\n Mutation" as MUT
 }
 
 class "<<Value Object>>\n Description" as DC
-
 
 
 

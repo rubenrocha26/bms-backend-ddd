@@ -1,0 +1,41 @@
+@startuml
+class MutationId
+class BirdId
+class CageId
+class BirdInCageId
+
+package "Mutation Aggregate" {
+    entity "<<Root>>\nMutation" as Mutation
+    class "Description"
+    Mutation "1" --> "1" MutationId
+    Mutation "1" --> "1" Description
+}
+
+package "Bird Aggregate" {
+    entity "<<Root>>\nBird" as Bird
+    class "BirdScientificName"
+    class "BirdRing"
+    class "DateOfBirth"
+    enum "BirdStatus"
+    Bird "1" --> "1" BirdId
+    Bird "1" --> "1" BirdScientificName
+    Bird "1" --> "1" BirdRing
+    Bird "1" --> "1" Date
+    Bird "1" --> "1" BirdStatus
+    Bird "0..1" --> "0..1" MutationId : mutationId
+}
+
+package "Cage Aggregate" {
+    entity "<<Root>>\nCage" as Cage
+    class "Size"
+    Cage "1" --> "1" CageId
+    Cage "1" --> "1" Size
+}
+
+package "BirdInCage Aggregate" {
+    entity "<<Root>>\nBirdInCage" as BirdInCage
+    BirdInCage "1" --> "1" BirdInCageId
+    BirdInCage "*" --> "1" BirdId : birdId
+    BirdInCage "1" --> "1" CageId : cageId
+}
+@enduml
