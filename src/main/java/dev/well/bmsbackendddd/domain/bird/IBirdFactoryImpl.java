@@ -17,5 +17,12 @@ public class IBirdFactoryImpl implements IBirdFactory {
         return new Bird(birdId, birdScientificName, birdRing, mutationId, birthDate);
     }
 
+    @Override
+    public Bird createDeathBird (BirdId birdId, BirdScientificName birdScientificName, BirdRing birdRing, MutationId mutationId, Date birthDate, Date deathDate){
+        Bird bird = new Bird(birdId, birdScientificName, birdRing, mutationId, birthDate);
+        bird.markAsDeath(deathDate);
+        return bird;
+    }
+
 
 }

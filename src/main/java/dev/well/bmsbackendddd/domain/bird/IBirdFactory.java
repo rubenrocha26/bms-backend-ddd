@@ -7,4 +7,6 @@ public interface IBirdFactory {
 
     Bird createBird (BirdId birdId, BirdScientificName birdScientificName, BirdRing birdRing, MutationId mutationId, Date birthDate);
 
+    Bird createDeathBird (BirdId birdId, BirdScientificName birdScientificName, BirdRing birdRing, MutationId mutationId, Date birthDate, Date deathDate);
+
 }

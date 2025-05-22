@@ -10,7 +10,7 @@ public class Bird implements AggregateRoot<BirdId> {
     private final MutationId _mutationId;
     private BirdStatus _birdStatus;
     private final Date _birthDate;
-    private Date _deathDate = null;
+    private Date _deathDate;
 
     //Bird Mutation can be null
     protected Bird (BirdId birdId, BirdScientificName birdScientificName, BirdRing birdRing, MutationId mutationId, Date birthDate) {
@@ -66,7 +66,26 @@ public class Bird implements AggregateRoot<BirdId> {
         return this._birdId;
     }
 
+    public BirdScientificName getBirdScientificName() {
+        return this._birdScientificName;
+    }
+
+    public BirdRing getBirdRing() {
+        return this._birdRing;
+    }
+
+    public MutationId getMutationId() {
+        return this._mutationId;
+    }
+
     public BirdStatus getBirdStatus() {
         return this._birdStatus;
+    }
+
+    public Date getBirthDate() {
+        return this._birthDate;
+    }
+    public Date getDeathDate() {
+        return this._deathDate;
     }
 }
