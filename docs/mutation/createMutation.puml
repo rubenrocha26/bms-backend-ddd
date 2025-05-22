@@ -6,12 +6,12 @@ title: CreateMutation_SequenceDiagram
 
 user -> UI ++ #application : I want to create a mutation
 UI --> user -- : description?
-user -> UI ++ #application : mutationDTO
-UI -> ":CreateMutationController" as CMC ++ #application : createMutation(mutationDTO)
-ref over CMC
-    Convert DTO to Domain
-end ref
+user -> UI ++ #application : description
+UI -> ":CreateMutationController" as CMC ++ #application : createMutation(String Description)
 CMC -> ":MutationServiceImpl" as MS ++ #application : createAndSaveMutation(description)
+ref over MS
+    convert String to VO
+end ref
 MS -> ":MutationFactoryImpl" as MF ++ #application : createMutation(description)
 
 create "mutation1 :Mutation" as MT
@@ -24,11 +24,10 @@ ref over MR
 end ref
 MR -> MR : save(mutation1)
 MR --> MS  -- : savedMutation
-
-MS --> CMC -- : savedMutation
-ref over CMC
+ref over MS
     Convert domain to DTO
 end ref
+MS --> CMC -- : savedMutation
 CMC --> UI -- : savedMutation
 UI --> user -- : savedMutation
 

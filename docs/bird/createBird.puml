@@ -9,10 +9,10 @@ UI --> user -- : bird scientificName, mutation, birdRing, dateOfBirth?
 
 user -> UI ++ #application : birdDto(scientificName, Optional.of(mutation), birdRing, dateOfBirth)
 UI -> ":BirdController" as BC ++ #application : createBird(birdDto)
-ref over BC
+BC -> ":BirdServiceImpl" as BS ++ #application : createBird(birdDTo)
+ref over BS
     Convert DTO to Domain
 end ref
-BC -> ":BirdServiceImpl" as BS ++ #application : createBird(scientificName, Optional.of(mutation), birdRing, dateOfBirth)
 BS -> ":BirdFactoryImpl" as BF ++ #application : createBird(scientificName, Optional.of(mutation), birdRing, dateOfBirth)
 
 create "bird1:Bird" as BD
@@ -25,11 +25,10 @@ ref over BR
 end ref
 BR -> BR : save(bird1)
 BR --> BS  -- : savedBird
-
-BS --> BC -- : savedBird
-ref over BC
+ref over BS
     Convert domain to DTO
 end ref
+BS --> BC -- : savedBird
 BC --> UI -- : savedBird
 UI --> user -- : savedBird
 @enduml
