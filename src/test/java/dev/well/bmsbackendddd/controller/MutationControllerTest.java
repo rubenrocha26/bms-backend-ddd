@@ -4,9 +4,9 @@ import dev.well.bmsbackendddd.domain.mutation.IMutationFactory;
 import dev.well.bmsbackendddd.domain.mutation.Mutation;
 import dev.well.bmsbackendddd.domain.mutation.MutationFactoryImpl;
 import dev.well.bmsbackendddd.domain.valueobject.Description;
-import dev.well.bmsbackendddd.dto.MutationDto;
-import dev.well.bmsbackendddd.dto.dtoMapper.IMutationDtoMapper;
-import dev.well.bmsbackendddd.dto.dtoMapper.MutationDtoMapperImpl;
+import dev.well.bmsbackendddd.dto.MutationDTO;
+import dev.well.bmsbackendddd.dto.dtoAssembler.IMutationDTOAssembler;
+import dev.well.bmsbackendddd.dto.dtoAssembler.MutationDTOAssemblerImpl;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,10 +23,10 @@ class MutationControllerTest {
         Mutation mutation = mutationFactory.createMutation(description);
 
         // Criar instância do mapper com mock do factory
-        IMutationDtoMapper mapper = new MutationDtoMapperImpl(mutationFactory);
+        IMutationDTOAssembler mapper = new MutationDTOAssemblerImpl(mutationFactory);
 
         // Act
-        MutationDto dto = mapper.toDTO(mutation);
+        MutationDTO dto = mapper.toDTO(mutation);
 
         // Assert
         assertEquals(expectedDescription, dto.getDescription());

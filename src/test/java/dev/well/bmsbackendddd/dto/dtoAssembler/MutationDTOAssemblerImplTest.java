@@ -1,18 +1,18 @@
-package dev.well.bmsbackendddd.dto.dtoMapper;
+package dev.well.bmsbackendddd.dto.dtoAssembler;
 
 import dev.well.bmsbackendddd.domain.mutation.IMutationFactory;
 import dev.well.bmsbackendddd.domain.mutation.Mutation;
 import dev.well.bmsbackendddd.domain.mutation.MutationFactoryImpl;
 import dev.well.bmsbackendddd.domain.valueobject.Description;
 import dev.well.bmsbackendddd.domain.valueobject.MutationId;
-import dev.well.bmsbackendddd.dto.MutationDto;
+import dev.well.bmsbackendddd.dto.MutationDTO;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class MutationDtoMapperImplTest {
+class MutationDTOAssemblerImplTest {
 
     @Test
     void toDTO() {
@@ -22,10 +22,10 @@ class MutationDtoMapperImplTest {
         when(mutation.getDescription()).thenReturn(new Description("desc"));
 
         IMutationFactory factory = mock(IMutationFactory.class);
-        MutationDtoMapperImpl mapper = new MutationDtoMapperImpl(factory);
+        MutationDTOAssemblerImpl mapper = new MutationDTOAssemblerImpl(factory);
 
         // Act
-        MutationDto dto = mapper.toDTO(mutation);
+        MutationDTO dto = mapper.toDTO(mutation);
 
         // Assert
         assertEquals("123", dto.getMutationId());
@@ -40,10 +40,10 @@ class MutationDtoMapperImplTest {
         IMutationFactory factory = new MutationFactoryImpl();
         Mutation mutation = factory.createMutation(mutationId, description);
 
-        MutationDtoMapperImpl mapper = new MutationDtoMapperImpl(factory);
+        MutationDTOAssemblerImpl mapper = new MutationDTOAssemblerImpl(factory);
 
         // Act
-        MutationDto dto = mapper.toDTO(mutation);
+        MutationDTO dto = mapper.toDTO(mutation);
 
         // Assert
         assertEquals("123", dto.getMutationId());

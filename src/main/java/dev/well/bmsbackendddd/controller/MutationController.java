@@ -1,9 +1,8 @@
 package dev.well.bmsbackendddd.controller;
 
 import dev.well.bmsbackendddd.domain.mutation.Mutation;
-import dev.well.bmsbackendddd.domain.valueobject.Description;
-import dev.well.bmsbackendddd.dto.dtoMapper.IMutationDtoMapper;
-import dev.well.bmsbackendddd.dto.MutationDto;
+import dev.well.bmsbackendddd.dto.dtoAssembler.IMutationDTOAssembler;
+import dev.well.bmsbackendddd.dto.MutationDTO;
 import dev.well.bmsbackendddd.service.mutation.IMutationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +16,9 @@ import java.util.Optional;
 public class MutationController {
 
     private final IMutationService _mutationService;
-    private final IMutationDtoMapper _mutationDTOMapper;
+    private final IMutationDTOAssembler _mutationDTOMapper;
 
-    public MutationController(IMutationService mutationService, IMutationDtoMapper mutationDTOMapper) {
+    public MutationController(IMutationService mutationService, IMutationDTOAssembler mutationDTOMapper) {
         if (mutationService == null || mutationDTOMapper == null) {
             throw new IllegalArgumentException("MutationService and mutationDTOMapper cannot be null");
         }
@@ -29,15 +28,13 @@ public class MutationController {
 
     //Add Bird REST API
     @PostMapping
-    public ResponseEntity<?> createMutation (@RequestBody MutationDto mutationDto){
+    public ResponseEntity<?> createMutation (@RequestBody String description){
         try {
-            Description descriptionForMutation = new Description(mutationDto.getDescription());
-            Optional<Mutation> savedMutation = _mutationService.createAndSaveMutation(descriptionForMutation);
+            Optional<MutationDTO> mutationDTOSaved = _mutationService.createAndSaveMutation(description);
 
-            if (savedMutation.isPresent()) {
-                MutationDto mutationDtoSaved = _mutationDTOMapper.toDTO(savedMutation.get());
+            if (mutationDTOSaved.isPresent()) {
 
-                return new ResponseEntity<>(mutationDtoSaved, HttpStatus.CREATED);
+                return new ResponseEntity<>(mutationDTOSaved, HttpStatus.CREATED);
 
             }else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)

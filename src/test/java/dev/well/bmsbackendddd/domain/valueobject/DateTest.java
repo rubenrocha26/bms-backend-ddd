@@ -33,7 +33,7 @@ class DateTest {
         String dateToString = date.toString();
         //assert
         assertNotNull(dateToString);
-        assertEquals("2025-05-20", dateToString);
+        assertEquals(LocalDate.now().toString(), dateToString);
         System.out.println(dateToString);
     }
 

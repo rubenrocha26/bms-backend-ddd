@@ -1,6 +1,6 @@
-package dev.well.bmsbackendddd.dto.dtoMapper;
+package dev.well.bmsbackendddd.dto.dtoAssembler;
 
-import dev.well.bmsbackendddd.dto.MutationDto;
+import dev.well.bmsbackendddd.dto.MutationDTO;
 import dev.well.bmsbackendddd.domain.mutation.IMutationFactory;
 import dev.well.bmsbackendddd.domain.mutation.Mutation;
 import dev.well.bmsbackendddd.domain.valueobject.Description;
@@ -8,10 +8,10 @@ import dev.well.bmsbackendddd.domain.valueobject.MutationId;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MutationDtoMapperImpl implements IMutationDtoMapper {
+public class MutationDTOAssemblerImpl implements IMutationDTOAssembler {
     private final IMutationFactory _mutationFactory;
 
-    public MutationDtoMapperImpl(IMutationFactory mutationFactory) {
+    public MutationDTOAssemblerImpl(IMutationFactory mutationFactory) {
         if(mutationFactory == null) {
             throw new NullPointerException("MutationFactory cannot be null");
         }
@@ -19,7 +19,7 @@ public class MutationDtoMapperImpl implements IMutationDtoMapper {
     }
 
     @Override
-    public Mutation toDomain (MutationDto mutationDTO) {
+    public Mutation toDomain (MutationDTO mutationDTO) {
         if(mutationDTO == null) {
             throw new IllegalArgumentException("MutationDTO cannot be null");
         }
@@ -27,10 +27,10 @@ public class MutationDtoMapperImpl implements IMutationDtoMapper {
     }
 
     @Override
-    public MutationDto toDTO (Mutation mutation) {
+    public MutationDTO toDTO (Mutation mutation) {
         if(mutation == null) {
             throw new IllegalArgumentException("Mutation cannot be null");
         }
-        return new MutationDto(mutation.identity().toString(), mutation.getDescription().getDescription());
+        return new MutationDTO(mutation.identity().toString(), mutation.getDescription().getDescription());
     }
 }

@@ -1,6 +1,7 @@
 package dev.well.bmsbackendddd.service.mutation;
 
-import dev.well.bmsbackendddd.dto.dtoMapper.IMutationDtoMapper;
+import dev.well.bmsbackendddd.dto.MutationDTO;
+import dev.well.bmsbackendddd.dto.dtoAssembler.IMutationDTOAssembler;
 import dev.well.bmsbackendddd.domain.mutation.IMutationFactory;
 
 import dev.well.bmsbackendddd.domain.mutation.Mutation;
@@ -15,28 +16,35 @@ import java.util.Optional;
 public class MutationServiceImpl implements IMutationService {
     private final IMutationFactory _mutationFactory;
     private final IMutationRepository _mutationRepository;
+    private final IMutationDTOAssembler _mutationDTOAssembler;
 
-    public MutationServiceImpl (IMutationFactory mutationFactory, IMutationRepository _mutationRepository, IMutationDtoMapper mutationDTOMapper) {
+    public MutationServiceImpl (IMutationFactory mutationFactory, IMutationRepository mutationRepository, IMutationDTOAssembler mutationDTOAssembler) {
         if (mutationFactory == null) {
             throw new IllegalArgumentException("MutationFactory cannot be null");
         }
-        if (_mutationRepository == null) {
+        if (mutationRepository == null) {
             throw new IllegalArgumentException("IMutationRepository cannot be null");
         }
+        if (mutationDTOAssembler == null ) {
+            throw new IllegalArgumentException("IMutationDTOAssembler cannot be null");
+        }
         this._mutationFactory = mutationFactory;
-        this._mutationRepository = _mutationRepository;
+        this._mutationRepository = mutationRepository;
+        this._mutationDTOAssembler = mutationDTOAssembler;
     }
 
     @Override
-    public Optional<Mutation> createAndSaveMutation (Description description) {
-        if (description == null) {
+    public Optional<MutationDTO> createAndSaveMutation (String description) {
+        if (description == null || description.isBlank()) {
             throw new IllegalArgumentException("Description cannot be null");
         }
         try{
-            boolean isMutationAlreadyRegistered = _mutationRepository.containsOfDescription(description);
+            Description domainDescription = new Description(description);
+            boolean isMutationAlreadyRegistered = _mutationRepository.containsOfDescription(domainDescription);
             if (!isMutationAlreadyRegistered) {
-                Mutation mutation = _mutationFactory.createMutation(description);
-                return Optional.of(_mutationRepository.save(mutation));
+                Mutation mutation = _mutationFactory.createMutation(domainDescription);
+                _mutationRepository.save(mutation);
+                return Optional.of(_mutationDTOAssembler.toDTO(mutation));
             }
             return Optional.empty();
         }catch (Exception e){
