@@ -71,4 +71,13 @@ public class MutationRepositorySpringDataImpl implements IMutationRepository {
         }
         return _mutationRepositorySpringData.existsByDescription(description.toString());
     }
+
+    @Override
+    public String getDescriptionByMutationId (MutationId mutationId) {
+        if (mutationId == null) {
+            throw new IllegalArgumentException("MutationId cannot be null");
+        }
+        Optional<MutationDataModel> mutationDataModelFromRepository = _mutationRepositorySpringData.findById(mutationId.toString());
+        return mutationDataModelFromRepository.get().getDescription();
+    }
 }

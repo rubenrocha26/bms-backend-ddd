@@ -88,4 +88,8 @@ public class Bird implements AggregateRoot<BirdId> {
     public Date getDeathDate() {
         return this._deathDate;
     }
+
+    public boolean hasMutation(){
+        return this._mutationId != null;
+    }
 }

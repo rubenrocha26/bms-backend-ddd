@@ -7,5 +7,6 @@ import dev.well.bmsbackendddd.domain.valueobject.MutationId;
 
 public interface IMutationRepository extends IRepository<MutationId, Mutation> {
 
-    boolean containsOfDescription(Description description);
+    boolean containsOfDescription (Description description);
+    String getDescriptionByMutationId (MutationId mutationId);
 }
